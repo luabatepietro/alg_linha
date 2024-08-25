@@ -10,7 +10,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'my_package = my_package.main:main',
+            'alg_linha = alg_linha.game:main', 
         ],
     },
     author="Lucas",
