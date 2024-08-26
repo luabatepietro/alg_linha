@@ -2,7 +2,6 @@ import pygame
 import numpy as np
 import os
 
-
 class Player(pygame.sprite.Sprite):
     def __init__(self, x: float, y: float, size: tuple = (100, 50), base_image_path=None) -> None:
         super().__init__()
