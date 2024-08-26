@@ -1,0 +1,9 @@
+import constantes
+import game
+import player
+import item
+import inimigo
+import star
+import startscreen
+import telafinal
+import mola
