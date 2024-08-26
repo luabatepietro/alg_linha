@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./venv/Lib/site-packages/alg_linha"
+    ]
+}
