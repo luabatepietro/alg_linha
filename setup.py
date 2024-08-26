@@ -5,10 +5,11 @@ setup(
     version="0.1.0",  # Versão do pacote
     packages=find_packages(),  # Encontrar automaticamente todos os pacotes
     install_requires=[  # Dependências
-        # Liste aqui outras bibliotecas que seu pacote precisa
+        'pygame',
+        'numpy',
     ],
     package_data={
-        '': ['img/.png','alg_linha/assets/.png',]  # Inclui todos os arquivos .png dentro do diretório 'img' de todos os pacotes
+        '': ['assets/*.png', 'assets/*.gif', 'assets/*.webp'],  # Inclui todos os arquivos .png, .gif, .webp dentro do diretório 'assets'
     },
     entry_points={
         "console_scripts": [
@@ -17,7 +18,7 @@ setup(
     },
     author="Lucas Abatepietro",  # Seu nome
     author_email="luabatepietro@hotmail.com",  # Seu email
-    description="jogo legal e maneiro",
+    description="Jogo legal e maneiro",
     long_description=open("README.md").read(),  # Descrição longa (usualmente do README)
     long_description_content_type="text/markdown",
     url="https://github.com/luabatepietro/alg_linha.git",  # URL do seu repositório
@@ -26,5 +27,5 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6',  # Versão mínima do Python
+    python_requires='>=3.6',  # Versão mínima do Python
 )
