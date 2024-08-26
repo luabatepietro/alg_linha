@@ -1,21 +1,20 @@
-import os
 from setuptools import setup, find_packages
-
-def find_package_data(package, directory):
-    paths = []
-    for root, _, files in os.walk(os.path.join(package, directory)):
-        for filename in files:
-            paths.append(os.path.relpath(os.path.join(root, filename), package))
-    return {package: paths}
+import os
 
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
+
+def find_assets_files():
+    asset_files = []
+    for dirpath, _, filenames in os.walk('assets'):
+        for filename in filenames:
+            asset_files.append(os.path.relpath(os.path.join(dirpath, filename), start=os.path.dirname(__file__)))
+    return asset_files
 
 setup(
     name="alg_linha",
     version="0.1",
     packages=find_packages(),
-    py_modules=['main', 'game', 'player', 'mola', 'inimigo', 'item', 'star', 'startscreen', 'telafinal'],
     include_package_data=True,
     install_requires=[
         'numpy',
@@ -23,12 +22,12 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'alg_linha = main:main',
+            'alg_linha = game:main',  # Apontando para a função `main` no seu arquivo `game.py`
         ],
     },
     author="Lucas",
     author_email="luabatepietro@hotmail.com",
-    description="Uma breve descrição do seu pacote",
+    description="Um jogo desafiador inspirado em Angry Birds com elementos de física e álgebra linear.",
     long_description=read('README.md'),
     long_description_content_type="text/markdown",
     url="https://github.com/luabatepietro/alg_linha",
@@ -38,5 +37,8 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
-    package_data=find_package_data('alg_linha', 'assets'),
+    package_data={
+        '': find_assets_files(),  # Inclui todos os arquivos encontrados dentro de 'assets'
+    },
+    data_files=[('assets', find_assets_files())]
 )
