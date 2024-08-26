@@ -7,7 +7,7 @@ from item import Item
 from star import Star
 from startscreen import StartScreen  
 from telafinal import VictoryScreen
-
+import os
 class Game:
     def __init__(self):
         pygame.init()
@@ -19,32 +19,35 @@ class Game:
         self.camera_shake = 0
         self.lives = 3  # Adiciona um contador de vidas
 
-        self.player = Player(100, 100, size=(100, 50))
+        # Defina a base de imagens usando o caminho relativo ao pacote
+        base_image_path = os.path.join(os.path.dirname(__file__), 'assets')
 
-        self.heart_full = pygame.image.load('assets/coracao.gif').convert_alpha()
+        self.heart_full = pygame.image.load(os.path.join(base_image_path, 'coracao.gif')).convert_alpha()
         self.heart_full = pygame.transform.scale(self.heart_full, (32, 32)) 
-        self.heart_empty = pygame.image.load('assets/coracao1.gif').convert_alpha()
+        self.heart_empty = pygame.image.load(os.path.join(base_image_path, 'coracao1.gif')).convert_alpha()
         self.heart_empty = pygame.transform.scale(self.heart_empty, (32, 32)) 
 
         # Lista de inimigos
         self.enemies = [
-            Inimigo(100, 500),
-            Inimigo(300, 200),
-            Inimigo(600, 400)
+            Inimigo(100, 500, base_image_path),
+            Inimigo(300, 200, base_image_path),
+            Inimigo(600, 400, base_image_path)
         ]
 
-        self.yellow_square = Item(100, 300)
+        self.yellow_square = Item(100, 300, base_image_path)
         self.planet_pos = (400, 300)
         self.planet_radius = 150  # Raio de influência do planeta
         self.gravitational_constant = 3000  # Constante gravitacional para o planeta
-        self.repulsion_mola = Mola(100, 400, 3000)
+        self.repulsion_mola = Mola(100, 400, 3000, base_image_path)
         self.counter = 0
         self.can_relaunch = False
         self.yellow_square_collected = False
 
-        self.star = Star(self.planet_pos[0], self.planet_pos[1])
-        self.start_screen = StartScreen(self.screen, 'assets/backgo.webp')  # Adiciona o caminho da imagem de fundo
-        self.victory_screen = VictoryScreen(self.screen, 'assets/final.webp')  # Instancia a tela de vitória
+        self.star = Star(self.planet_pos[0], self.planet_pos[1], base_image_path)
+        self.start_screen = StartScreen(self.screen, os.path.join(base_image_path, 'backgo.webp'))  # Adiciona o caminho da imagem de fundo
+        self.victory_screen = VictoryScreen(self.screen, os.path.join(base_image_path, 'final.webp'))  # Instancia a tela de vitória
+
+
 
     def reset(self):
         self.player = Player(100, 100, size=(100, 50))

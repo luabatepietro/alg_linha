@@ -1,11 +1,13 @@
 
 import pygame
+import os
 
 class Mola(pygame.sprite.Sprite):
     def __init__(self, x: float, y: float, repulsion_constant: float, size: tuple = (64, 64)):
+        base_image_path = os.path.join(os.path.dirname(__file__), 'assets')
         self.frames = [
             pygame.transform.scale(
-                pygame.image.load(f'assets/mola{str(i)}.gif').convert_alpha(),
+                pygame.image.load(os.path.join(base_image_path, f'mola{str(i)}.gif')).convert_alpha(),
                 size
             )
             for i in range(1, 8)

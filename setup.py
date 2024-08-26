@@ -4,6 +4,14 @@ import os
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
+# Função para encontrar todos os arquivos de imagem dentro de 'assets'
+def find_assets_files():
+    asset_files = []
+    for dirpath, _, filenames in os.walk('assets'):
+        for filename in filenames:
+            asset_files.append(os.path.relpath(os.path.join(dirpath, filename), start=os.path.dirname(__file__)))
+    return asset_files
+
 setup(
     name="alg_linha",
     version="0.1",
@@ -15,7 +23,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'alg_linha = main:main',  # Aponta diretamente para o main.py
+            'alg_linha = main:main',  
         ],
     },
     author="Lucas",
@@ -31,6 +39,7 @@ setup(
     ],
     python_requires='>=3.6',
     package_data={
-        '': ['assets/*.gif', 'assets/*.png', 'assets/*.webp'],
+        '': find_assets_files(),  # Inclui todos os arquivos encontrados dentro de 'assets'
     },
+    data_files=[('assets', find_assets_files())]  # Certifique-se de que os arquivos estão sendo adicionados
 )

@@ -7,7 +7,7 @@ from item import Item
 from star import Star
 from startscreen import StartScreen  
 from telafinal import VictoryScreen
-
+import os
 class Game:
     def __init__(self):
         pygame.init()
@@ -21,9 +21,11 @@ class Game:
 
         self.player = Player(100, 100, size=(100, 50))
 
-        self.heart_full = pygame.image.load('assets/coracao.gif').convert_alpha()
+        base_image_path = os.path.join(os.path.dirname(__file__), 'assets')
+
+        self.heart_full = pygame.image.load(os.path.join(base_image_path, 'coracao.gif')).convert_alpha()
         self.heart_full = pygame.transform.scale(self.heart_full, (32, 32)) 
-        self.heart_empty = pygame.image.load('assets/coracao1.gif').convert_alpha()
+        self.heart_empty = pygame.image.load(os.path.join(base_image_path, 'coracao1.gif')).convert_alpha()
         self.heart_empty = pygame.transform.scale(self.heart_empty, (32, 32)) 
 
         # Lista de inimigos
@@ -43,8 +45,9 @@ class Game:
         self.yellow_square_collected = False
 
         self.star = Star(self.planet_pos[0], self.planet_pos[1])
-        self.start_screen = StartScreen(self.screen, 'assets/backgo.webp')  # Adiciona o caminho da imagem de fundo
-        self.victory_screen = VictoryScreen(self.screen, 'assets/final.webp')  # Instancia a tela de vitória
+        self.start_screen = StartScreen(self.screen, os.path.join(base_image_path, 'backgo.webp'))  # Adiciona o caminho da imagem de fundo
+        self.victory_screen = VictoryScreen(self.screen, os.path.join(base_image_path, 'final.webp'))  # Instancia a tela de vitória
+
 
     def reset(self):
         self.player = Player(100, 100, size=(100, 50))
