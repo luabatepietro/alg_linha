@@ -6,14 +6,14 @@ setup(
     packages=find_packages(),  # Encontrar automaticamente todos os pacotes
     install_requires=[  # Dependências
         'pygame',
-        'numpy',
+        'numpy'
     ],
     package_data={
         '': ['assets/*.png', 'assets/*.gif', 'assets/*.webp'],  # Inclui todos os arquivos .png, .gif, .webp dentro do diretório 'assets'
     },
     entry_points={
         "console_scripts": [
-            "alg_linha=alg_linha.main:main",  # Se quiser criar um comando de terminal
+            "alg_linha=alg_linha.main:main",  # Apontando para o arquivo main.py corretamente
         ],
     },
     author="Lucas Abatepietro",  # Seu nome
