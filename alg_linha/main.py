@@ -1,4 +1,4 @@
-from game import Game
+from alg_linha.game import Game
 
 def main():
     game = Game()

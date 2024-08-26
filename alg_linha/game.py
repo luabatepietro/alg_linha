@@ -1,12 +1,12 @@
 import pygame
 import numpy as np
-from player import Player
-from mola import Mola
-from inimigo import Inimigo
-from item import Item
-from star import Star
-from startscreen import StartScreen  
-from telafinal import VictoryScreen
+from alg_linha.player import Player
+from alg_linha.mola import Mola
+from alg_linha.inimigo import Inimigo
+from alg_linha.item import Item
+from alg_linha.star import Star
+from alg_linha.startscreen import StartScreen  
+from alg_linha.telafinal import VictoryScreen
 import os
 class Game:
     def __init__(self):
