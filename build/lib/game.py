@@ -39,7 +39,7 @@ class Game:
         self.planet_pos = (400, 300)
         self.planet_radius = 150  # Raio de influência do planeta
         self.gravitational_constant = 3000  # Constante gravitacional para o planeta
-        self.repulsion_mola = Mola(100, 400, 3000)
+        self.repulsion_mola = Mola(100, 400, 3000, base_image_path)
         self.counter = 0
         self.can_relaunch = False
         self.yellow_square_collected = False
