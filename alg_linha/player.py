@@ -2,14 +2,13 @@ import pygame
 import numpy as np
 import os
 
-base_dir = os.path.dirname(os.path.abspath(__file__))
-base_dir = os.path.dirname(__file__) 
 
-class Player:
-    def __init__(self, x: float, y: float, size: tuple = (100, 50)) -> None:
+class Player(pygame.sprite.Sprite):
+    def __init__(self, x: float, y: float, size: tuple = (100, 50), base_image_path=None) -> None:
+        super().__init__()
         self.frames = [
             pygame.transform.scale(
-                pygame.image.load(os.path.join(base_dir, 'assets', f'frame_{str(i).zfill(2)}_delay-0.07s.gif')).convert_alpha(),
+                pygame.image.load(os.path.join(base_image_path, f'frame_{str(i).zfill(2)}_delay-0.07s.gif')).convert_alpha(),
                 size
             )
             for i in range(11)
@@ -22,11 +21,11 @@ class Player:
         self.thrown = False
         self.dragging = False
         self.initial_pos = np.array([x, y], dtype=np.float64)
-        self.max_pull_distance = 100  # Distância máxima que pode puxar
+        self.max_pull_distance = 100
         self.trajectory_points = []
         self.paused = False
-        self.force = 0  # Força de lançamento
-        self.animation_speed = 0.1  # Velocidade da animação
+        self.force = 0
+        self.animation_speed = 0.1
         self.time_since_last_frame = 0
 
     def update(self, planet_pos, gravitational_constant, planet_radius):

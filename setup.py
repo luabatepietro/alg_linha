@@ -15,7 +15,7 @@ setup(
     name="alg_linha",
     version="0.1",
     packages=find_packages(),
-    py_modules=['main', 'game', 'player', 'mola', 'inimigo', 'item', 'star', 'startscreen', 'telafinal'],  # Inclua 'main' como um módulo
+    py_modules=['main', 'game', 'player', 'mola', 'inimigo', 'item', 'star', 'startscreen', 'telafinal'],
     include_package_data=True,
     install_requires=[
         'numpy',
@@ -23,7 +23,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'alg_linha = main:main',  # Aponta para a função 'main' dentro do arquivo 'main.py'
+            'alg_linha = main:main',
         ],
     },
     author="Lucas",
@@ -38,5 +38,5 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
-    package_data=find_package_data('alg_linha', 'assets'),  # Coleta todos os arquivos dentro da pasta 'assets'
+    package_data=find_package_data('alg_linha', 'assets'),
 )

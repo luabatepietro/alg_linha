@@ -19,10 +19,10 @@ class Game:
         self.camera_shake = 0
         self.lives = 3  # Adiciona um contador de vidas
 
-        self.player = Player(100, 100, size=(100, 50))
 
         base_image_path = os.path.join(os.path.dirname(__file__), 'assets')
 
+        self.player = Player(100, 100, size=(100, 50), base_image_path=base_image_path)
         self.heart_full = pygame.image.load(os.path.join(base_image_path, 'coracao.gif')).convert_alpha()
         self.heart_full = pygame.transform.scale(self.heart_full, (32, 32)) 
         self.heart_empty = pygame.image.load(os.path.join(base_image_path, 'coracao1.gif')).convert_alpha()
