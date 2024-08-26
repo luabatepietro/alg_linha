@@ -5,7 +5,7 @@ class Mola(pygame.sprite.Sprite):
     def __init__(self, x: float, y: float, repulsion_constant: float, size: tuple = (64, 64)):
         self.frames = [
             pygame.transform.scale(
-                pygame.image.load(f'images/mola{str(i)}.gif').convert_alpha(),
+                pygame.image.load(f'assets/mola{str(i)}.gif').convert_alpha(),
                 size
             )
             for i in range(1, 8)

@@ -21,9 +21,9 @@ class Game:
 
         self.player = Player(100, 100, size=(100, 50))
 
-        self.heart_full = pygame.image.load('images/coracao.gif').convert_alpha()
+        self.heart_full = pygame.image.load('assets/coracao.gif').convert_alpha()
         self.heart_full = pygame.transform.scale(self.heart_full, (32, 32)) 
-        self.heart_empty = pygame.image.load('images/coracao1.gif').convert_alpha()
+        self.heart_empty = pygame.image.load('assets/coracao1.gif').convert_alpha()
         self.heart_empty = pygame.transform.scale(self.heart_empty, (32, 32)) 
 
         # Lista de inimigos
@@ -43,8 +43,8 @@ class Game:
         self.yellow_square_collected = False
 
         self.star = Star(self.planet_pos[0], self.planet_pos[1])
-        self.start_screen = StartScreen(self.screen, 'images/backgo.webp')  # Adiciona o caminho da imagem de fundo
-        self.victory_screen = VictoryScreen(self.screen, 'images/final.webp')  # Instancia a tela de vitória
+        self.start_screen = StartScreen(self.screen, 'assets/backgo.webp')  # Adiciona o caminho da imagem de fundo
+        self.victory_screen = VictoryScreen(self.screen, 'assets/final.webp')  # Instancia a tela de vitória
 
     def reset(self):
         self.player = Player(100, 100, size=(100, 50))
@@ -123,7 +123,7 @@ class Game:
         self.star.update()
 
     def draw(self):
-        self.background = pygame.image.load('images/fundo.png').convert_alpha()
+        self.background = pygame.image.load('assets/fundo.png').convert_alpha()
         self.screen.blit(self.background, (0, 0))
 
         if self.camera_shake > 0:

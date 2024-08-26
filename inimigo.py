@@ -4,7 +4,7 @@ import numpy as np
 class Inimigo(pygame.sprite.Sprite):
     def __init__(self, x: float, y: float) -> None:
         super().__init__()
-        self.image = pygame.image.load('images/asteroid.png').convert_alpha()
+        self.image = pygame.image.load('assets/asteroid.png').convert_alpha()
         self.image = pygame.transform.scale(self.image, (60, 60))  # Redimensiona se necessário
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)

@@ -6,7 +6,7 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
         self.frames = [
             pygame.transform.scale(
-                pygame.image.load(f'personagem/frame_{str(i).zfill(2)}_delay-0.07s.gif').convert_alpha(),
+                pygame.image.load(f'assets/frame_{str(i).zfill(2)}_delay-0.07s.gif').convert_alpha(),
                 size
             )
             for i in range(11)
