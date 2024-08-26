@@ -1,12 +1,15 @@
 import pygame
 import numpy as np
+import os
 
-class Player(pygame.sprite.Sprite):
+# Definir o caminho base para carregar as imagens
+base_dir = os.path.dirname(os.path.abspath(__file__))
+
+class Player:
     def __init__(self, x: float, y: float, size: tuple = (100, 50)) -> None:
-        super().__init__()
         self.frames = [
             pygame.transform.scale(
-                pygame.image.load(f'assets/frame_{str(i).zfill(2)}_delay-0.07s.gif').convert_alpha(),
+                pygame.image.load(os.path.join(base_dir, 'assets', f'frame_{str(i).zfill(2)}_delay-0.07s.gif')).convert_alpha(),
                 size
             )
             for i in range(11)

@@ -1,15 +1,15 @@
-from setuptools import setup, find_packages
 import os
+from setuptools import setup, find_packages
+
+def find_package_data(package, directory):
+    paths = []
+    for root, _, files in os.walk(os.path.join(package, directory)):
+        for filename in files:
+            paths.append(os.path.relpath(os.path.join(root, filename), package))
+    return {package: paths}
 
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
-
-def find_assets_files():
-    asset_files = []
-    for dirpath, _, filenames in os.walk('assets'):
-        for filename in filenames:
-            asset_files.append(os.path.relpath(os.path.join(dirpath, filename), start=os.path.dirname(__file__)))
-    return asset_files
 
 setup(
     name="alg_linha",
@@ -38,7 +38,5 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
-    package_data={
-        '': find_assets_files(),  # Inclui todos os arquivos encontrados dentro de 'assets'
-    },
+    package_data=find_package_data('alg_linha', 'assets'),  # Coleta todos os arquivos dentro da pasta 'assets'
 )
