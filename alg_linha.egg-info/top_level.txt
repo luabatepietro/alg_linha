@@ -1,0 +1,10 @@
+constantes
+game
+inimigo
+item
+main
+mola
+player
+star
+startscreen
+telafinal
