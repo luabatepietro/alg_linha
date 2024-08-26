@@ -1,44 +1,30 @@
 from setuptools import setup, find_packages
-import os
-
-def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
-
-def find_assets_files():
-    asset_files = []
-    for dirpath, _, filenames in os.walk('assets'):
-        for filename in filenames:
-            asset_files.append(os.path.relpath(os.path.join(dirpath, filename), start=os.path.dirname(__file__)))
-    return asset_files
 
 setup(
-    name="alg_linha",
-    version="0.1",
-    packages=find_packages(),
-    include_package_data=True,
-    install_requires=[
-        'numpy',
-        'pygame',
+    name="alg_linha",  # Nome do pacote
+    version="0.1.0",  # Versão do pacote
+    packages=find_packages(),  # Encontrar automaticamente todos os pacotes
+    install_requires=[  # Dependências
+        # Liste aqui outras bibliotecas que seu pacote precisa
     ],
+    package_data={
+        '': ['img/.png','alg_linha/assets/.png',]  # Inclui todos os arquivos .png dentro do diretório 'img' de todos os pacotes
+    },
     entry_points={
-        'console_scripts': [
-            'alg_linha = alg_linha.game:main',  # Ajuste aqui para referenciar corretamente o módulo
+        "console_scripts": [
+            "alg_linha=alg_linha.main:main",  # Se quiser criar um comando de terminal
         ],
     },
-    author="Lucas",
-    author_email="luabatepietro@hotmail.com",
-    description="Um jogo desafiador inspirado em Angry Birds com elementos de física e álgebra linear.",
-    long_description=read('README.md'),
+    author="Lucas Abatepietro",  # Seu nome
+    author_email="luabatepietro@hotmail.com",  # Seu email
+    description="jogo legal e maneiro",
+    long_description=open("README.md").read(),  # Descrição longa (usualmente do README)
     long_description_content_type="text/markdown",
-    url="https://github.com/luabatepietro/alg_linha",
+    url="https://github.com/luabatepietro/alg_linha.git",  # URL do seu repositório
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6',
-    package_data={
-        '': find_assets_files(),  
-    },
-    data_files=[('assets', find_assets_files())]
+    python_requires='>=3.6',  # Versão mínima do Python
 )
