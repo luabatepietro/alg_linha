@@ -30,12 +30,12 @@ class Game:
 
         # Lista de inimigos
         self.enemies = [
-            Inimigo(100, 500),
-            Inimigo(300, 200),
-            Inimigo(600, 400)
+            Inimigo(100, 500, base_image_path),
+            Inimigo(300, 200, base_image_path),
+            Inimigo(600, 400, base_image_path)
         ]
 
-        self.yellow_square = Item(100, 300)
+        self.yellow_square = Item(100, 300, base_image_path)
         self.planet_pos = (400, 300)
         self.planet_radius = 150  # Raio de influência do planeta
         self.gravitational_constant = 3000  # Constante gravitacional para o planeta
@@ -44,7 +44,7 @@ class Game:
         self.can_relaunch = False
         self.yellow_square_collected = False
 
-        self.star = Star(self.planet_pos[0], self.planet_pos[1])
+        self.star = Star(self.planet_pos[0], self.planet_pos[1], base_image_path)
         self.start_screen = StartScreen(self.screen, os.path.join(base_image_path, 'backgo.webp'))  # Adiciona o caminho da imagem de fundo
         self.victory_screen = VictoryScreen(self.screen, os.path.join(base_image_path, 'final.webp'))  # Instancia a tela de vitória
 

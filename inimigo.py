@@ -1,9 +1,9 @@
 import pygame
 import numpy as np
 import os
-
-class Inimigo:
+class Inimigo(pygame.sprite.Sprite):
     def __init__(self, x: float, y: float, base_image_path) -> None:
+        super().__init__()
         self.image = pygame.image.load(os.path.join(base_image_path, 'asteroid.png')).convert_alpha()
         self.image = pygame.transform.scale(self.image, (60, 60))  # Redimensiona se necessário
         self.rect = self.image.get_rect()
@@ -15,7 +15,3 @@ class Inimigo:
     def hide(self):
         self.is_visible = False  # Marca o inimigo como "invisível" ou "estourado"
         self.rect.center = (-100, -100)  # Posiciona o inimigo fora da tela
-
-    def draw(self, screen):
-        if self.is_visible:
-            screen.blit(self.image, self.rect)
