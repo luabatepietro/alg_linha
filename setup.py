@@ -13,7 +13,7 @@ setup(
     },
     entry_points={
         "console_scripts": [
-            "alg_linha=alg_linha.main:main",  # Apontando para o arquivo main.py corretamente
+            "alg_linha=main:main",  # Apontando para o arquivo main.py corretamente
         ],
     },
     author="Lucas Abatepietro",  # Seu nome
