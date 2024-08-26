@@ -8,6 +8,9 @@ from alg_linha.star import Star
 from alg_linha.startscreen import StartScreen  
 from alg_linha.telafinal import VictoryScreen
 import os
+
+base_image_path = os.path.join(os.path.dirname(__file__), 'assets')
+
 class Game:
     def __init__(self):
         pygame.init()
@@ -126,7 +129,7 @@ class Game:
         self.star.update()
 
     def draw(self):
-        self.background = pygame.image.load('assets/fundo.png').convert_alpha()
+        self.background = pygame.image.load(os.path.join(base_image_path, 'fundo.png')).convert_alpha()
         self.screen.blit(self.background, (0, 0))
 
         if self.camera_shake > 0:
