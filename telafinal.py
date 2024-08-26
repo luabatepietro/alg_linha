@@ -1,17 +1,15 @@
 import pygame
 
 class VictoryScreen:
-    def __init__(self, screen):
+    def __init__(self, screen, background_image_path):
         self.screen = screen
-        self.font_title = pygame.font.SysFont(None, 74)
-        self.font_instruction = pygame.font.SysFont(None, 36)
-        self.title_text = self.font_title.render("Você Venceu!", True, (255, 255, 255))
-        self.instruction_text = self.font_instruction.render("Pressione qualquer tecla para sair", True, (255, 255, 255))
+        self.background_image = pygame.image.load(background_image_path)
 
     def show(self):
-        self.screen.fill((0, 0, 0))
-        self.screen.blit(self.title_text, (self.screen.get_width() // 2 - self.title_text.get_width() // 2, 150))
-        self.screen.blit(self.instruction_text, (self.screen.get_width() // 2 - self.instruction_text.get_width() // 2, 300))
+        # Redimensionar a imagem de fundo para preencher a tela
+        background = pygame.transform.scale(self.background_image, (self.screen.get_width(), self.screen.get_height()))
+        
+        self.screen.blit(background, (0, 0))
         pygame.display.flip()
 
         waiting = True
@@ -22,3 +20,4 @@ class VictoryScreen:
                     exit()
                 if event.type == pygame.KEYUP:
                     waiting = False
+

@@ -43,8 +43,8 @@ class Game:
         self.yellow_square_collected = False
 
         self.star = Star(self.planet_pos[0], self.planet_pos[1])
-        self.start_screen = StartScreen(self.screen)  # Instancia a tela de início
-        self.victory_screen = VictoryScreen(self.screen)  # Instancia a tela de vitória
+        self.start_screen = StartScreen(self.screen, 'images/backgo.webp')  # Adiciona o caminho da imagem de fundo
+        self.victory_screen = VictoryScreen(self.screen, 'images/final.webp')  # Instancia a tela de vitória
 
     def reset(self):
         self.player = Player(100, 100, size=(100, 50))
