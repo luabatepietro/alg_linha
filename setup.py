@@ -22,7 +22,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'alg_linha = game:main',  # Apontando para a função `main` no seu arquivo `game.py`
+            'alg_linha = alg_linha.game:main',  # Ajuste aqui para referenciar corretamente o módulo
         ],
     },
     author="Lucas",
@@ -38,7 +38,7 @@ setup(
     ],
     python_requires='>=3.6',
     package_data={
-        '': find_assets_files(),  # Inclui todos os arquivos encontrados dentro de 'assets'
+        '': find_assets_files(),  
     },
     data_files=[('assets', find_assets_files())]
 )
