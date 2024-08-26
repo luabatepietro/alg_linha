@@ -20,6 +20,7 @@ setup(
     install_requires=[
         'numpy',
         'pygame',
+        'os'
     ],
     entry_points={
         'console_scripts': [
