@@ -2,8 +2,8 @@ import pygame
 import numpy as np
 import os
 
-# Definir o caminho base para carregar as imagens
 base_dir = os.path.dirname(os.path.abspath(__file__))
+base_dir = os.path.dirname(__file__) 
 
 class Player:
     def __init__(self, x: float, y: float, size: tuple = (100, 50)) -> None:
