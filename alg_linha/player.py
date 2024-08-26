@@ -5,6 +5,8 @@ import os
 class Player(pygame.sprite.Sprite):
     def __init__(self, x: float, y: float, size: tuple = (100, 50), base_image_path=None) -> None:
         super().__init__()
+        base_image_path = os.path.join(os.path.dirname(__file__), 'assets')
+
         self.frames = [
             pygame.transform.scale(
                 pygame.image.load(os.path.join(base_image_path, f'frame_{str(i).zfill(2)}_delay-0.07s.gif')).convert_alpha(),

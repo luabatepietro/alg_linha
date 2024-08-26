@@ -7,9 +7,8 @@ from alg_linha.item import Item
 from alg_linha.star import Star
 from alg_linha.startscreen import StartScreen  
 from alg_linha.telafinal import VictoryScreen
+from alg_linha.gmover import GameOverScreen
 import os
-
-base_image_path = os.path.join(os.path.dirname(__file__), 'assets')
 
 class Game:
     def __init__(self):
@@ -22,44 +21,45 @@ class Game:
         self.camera_shake = 0
         self.lives = 3  # Adiciona um contador de vidas
 
+        self.base_image_path = os.path.join(os.path.dirname(__file__), 'assets')  # Armazene o caminho da pasta de imagens
 
-        base_image_path = os.path.join(os.path.dirname(__file__), 'assets')
-
-        self.player = Player(100, 100, size=(100, 50), base_image_path=base_image_path)
-        self.heart_full = pygame.image.load(os.path.join(base_image_path, 'coracao.gif')).convert_alpha()
+        self.player = Player(100, 100, size=(100, 50), base_image_path=self.base_image_path)
+        self.heart_full = pygame.image.load(os.path.join(self.base_image_path, 'coracao.gif')).convert_alpha()
         self.heart_full = pygame.transform.scale(self.heart_full, (32, 32)) 
-        self.heart_empty = pygame.image.load(os.path.join(base_image_path, 'coracao1.gif')).convert_alpha()
+        self.heart_empty = pygame.image.load(os.path.join(self.base_image_path, 'coracao1.gif')).convert_alpha()
         self.heart_empty = pygame.transform.scale(self.heart_empty, (32, 32)) 
 
         # Lista de inimigos
         self.enemies = [
-            Inimigo(100, 500, base_image_path),
-            Inimigo(300, 200, base_image_path),
-            Inimigo(600, 400, base_image_path)
+            Inimigo(100, 500, self.base_image_path),
+            Inimigo(300, 200, self.base_image_path),
+            Inimigo(600, 400, self.base_image_path)
         ]
 
-        self.yellow_square = Item(100, 300, base_image_path)
+        self.yellow_square = Item(100, 300, self.base_image_path)
         self.planet_pos = (400, 300)
         self.planet_radius = 150  # Raio de influência do planeta
         self.gravitational_constant = 3000  # Constante gravitacional para o planeta
-        self.repulsion_mola = Mola(100, 400, 3000, base_image_path)
+        self.repulsion_mola = Mola(100, 400, 3000, self.base_image_path)
         self.counter = 0
         self.can_relaunch = False
         self.yellow_square_collected = False
 
-        self.star = Star(self.planet_pos[0], self.planet_pos[1], base_image_path)
-        self.start_screen = StartScreen(self.screen, os.path.join(base_image_path, 'backgo.webp'))  # Adiciona o caminho da imagem de fundo
-        self.victory_screen = VictoryScreen(self.screen, os.path.join(base_image_path, 'final.webp'))  # Instancia a tela de vitória
+        self.star = Star(self.planet_pos[0], self.planet_pos[1], self.base_image_path)
+        self.start_screen = StartScreen(self.screen, os.path.join(self.base_image_path, 'backgo.webp'))  # Adiciona o caminho da imagem de fundo
+        self.victory_screen = VictoryScreen(self.screen, os.path.join(self.base_image_path, 'final.webp'))  # Instancia a tela de vitória
+        self.game_over_screen = GameOverScreen(self.screen, os.path.join(self.base_image_path, 'gameover.webp'))  # Adiciona a tela de Game Over
 
 
     def reset(self):
-        self.player = Player(100, 100, size=(100, 50))
+        # Use o caminho armazenado em vez de redefinir o caminho
+        self.player = Player(100, 100, size=(100, 50), base_image_path=self.base_image_path)
         
         # Reinicializa a lista de inimigos
         self.enemies = [
-            Inimigo(100, 500),
-            Inimigo(300, 200),
-            Inimigo(600, 400)
+            Inimigo(100, 500, self.base_image_path),
+            Inimigo(300, 200, self.base_image_path),
+            Inimigo(600, 400, self.base_image_path)
         ]
         
         self.counter = 0
@@ -74,8 +74,16 @@ class Game:
             self.clock.tick(30 if self.slow_motion else 60)
             self.events()
             self.update()
-            self.draw()
 
+            if self.lives <= 0:  # Verifica se o jogador perdeu todas as vidas
+                result = self.game_over_screen.show()  # Mostra a tela de Game Over
+                if result == "restart":
+                    self.reset()  # Reinicia o jogo
+                else:
+                    self.running = False 
+
+            self.draw()
+        
     def events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -129,7 +137,7 @@ class Game:
         self.star.update()
 
     def draw(self):
-        self.background = pygame.image.load(os.path.join(base_image_path, 'fundo.png')).convert_alpha()
+        self.background = pygame.image.load(os.path.join(self.base_image_path, 'fundo.png')).convert_alpha()
         self.screen.blit(self.background, (0, 0))
 
         if self.camera_shake > 0:
@@ -176,5 +184,6 @@ class Game:
                 self.screen.blit(self.heart_empty, (heart_x_start + i * heart_spacing, heart_y))  
 
         pygame.display.flip()
+    
     def quit(self):
         pygame.quit()
